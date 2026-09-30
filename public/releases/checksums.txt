@@ -1,0 +1,4 @@
+# pumpkin v1.0.0 Release SHA-256 Checksums
+# Generated on 2026-09-29T14:00:00Z
+60e5f076f9c098a0e357293f4fa3fd52f1c7588cc5ba926fed5c3f69b9d37edf  pumpkin-Setup-1.0.0.exe
+560ab671dd8614cdc4913eaacbf0819abb17f4a92a15b2e2b2b6e7346fd71295  pumpkin-1.0.0.apk

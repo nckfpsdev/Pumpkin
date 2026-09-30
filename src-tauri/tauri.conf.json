@@ -1,0 +1,59 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli/schema.json",
+  "productName": "pumpkin",
+  "version": "1.0.0",
+  "identifier": "com.pumpkin.app",
+  "build": {
+    "beforeDevCommand": "",
+    "devUrl": "http://localhost:3000",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "pumpkin",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 960,
+        "minHeight": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": true,
+        "center": true,
+        "theme": "Dark"
+      }
+    ],
+    "trayIcon": {
+      "iconPath": "icons/icon-32x32.png",
+      "tooltip": "pumpkin — Voice, Chat & Screen Sharing",
+      "iconAsTemplate": false
+    },
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis", "apk", "aab"],
+    "icon": [
+      "icons/icon-32x32.png",
+      "icons/icon-128x128.png",
+      "icons/icon-512x512.png"
+    ],
+    "windows": {
+      "nsis": {
+        "installerIcon": "icons/icon-32x32.png",
+        "installMode": "currentUser",
+        "displayLanguageSelector": false,
+        "startMenuFolder": "pumpkin"
+      },
+      "wix": null
+    },
+    "android": {
+      "minSdkVersion": 24,
+      "targetSdkVersion": 34,
+      "versionCode": 100
+    }
+  }
+}

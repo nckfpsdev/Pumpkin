@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Primary Pumpkin Orange Gradient -->
+    <linearGradient id="p-orange-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5500" />
+      <stop offset="35%" stop-color="#FF7A00" />
+      <stop offset="70%" stop-color="#FF951A" />
+      <stop offset="100%" stop-color="#FFB84D" />
+    </linearGradient>
+
+    <!-- Secondary Accent Gradient for Depth & Refraction -->
+    <linearGradient id="p-accent-gradient" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFB84D" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#FF7A00" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#FF5500" stop-opacity="0.1" />
+    </linearGradient>
+
+    <!-- Subtle Tech Glow Filter -->
+    <filter id="p-subtle-glow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Transparent Background (as explicitly requested) -->
+
+  <!-- Modern, Minimalist, Geometric 'P' Logo Mark -->
+  <g id="geometric-p" filter="url(#p-subtle-glow)">
+    <!-- Primary Continuous Geometric Monogram Path -->
+    <!-- Crafted with precision arcs and isometric chamfers for high legibility at 16px and 512px -->
+    <path
+      d="M 124 84
+         L 284 84
+         C 368 84 428 140 428 224
+         C 428 308 368 364 284 364
+         L 216 364
+         L 216 428
+         L 124 428
+         Z
+         M 216 172
+         L 216 276
+         L 280 276
+         C 316 276 338 254 338 224
+         C 338 194 316 172 280 172
+         Z"
+      fill="url(#p-orange-gradient)"
+      fill-rule="evenodd"
+    />
+
+    <!-- Diagonal Geometric Slice / Architectural Tech Notch -->
+    <!-- Gives it high-tech silhouette distinction and stops it from looking like standard Helvetica -->
+    <path
+      d="M 124 380 L 124 428 L 172 428 Z"
+      fill="#FFA733"
+      opacity="0.9"
+    />
+
+    <!-- Precision Inner Tech Core Ring (Soundwave / WebRTC Node) -->
+    <circle
+      cx="277"
+      cy="224"
+      r="28"
+      fill="none"
+      stroke="url(#p-orange-gradient)"
+      stroke-width="5"
+      opacity="0.85"
+    />
+
+    <!-- Micro Satellite Node -->
+    <circle
+      cx="277"
+      cy="224"
+      r="10"
+      fill="#FFB84D"
+    />
+  </g>
+</svg>
