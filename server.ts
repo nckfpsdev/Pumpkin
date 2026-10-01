@@ -40,7 +40,7 @@ if (process.env.APP_URL) {
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   if (origin) {
-    const isAllowed = ALLOWED_ORIGINS.includes(origin) || origin.endsWith('.run.app');
+    const isAllowed = ALLOWED_ORIGINS.includes(origin);
     if (isAllowed) {
       res.setHeader('Access-Control-Allow-Origin', origin);
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -157,7 +157,7 @@ app.get('/api/channels', (req, res) => {
 
 app.get('/api/version', (req, res) => {
   res.json({
-    version: '1.0.0',
+    version: '1.0.2',
     name: 'pumpkin',
     status: 'stable',
     platforms: ['web', 'windows', 'android'],
