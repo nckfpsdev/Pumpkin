@@ -41,13 +41,10 @@
     "icon": [
       "icons/icon-32x32.png",
       "icons/icon-128x128.png",
-      "icons/icon-256x256.png",
-      "icons/icon-512x512.png",
-      "icons/icon.ico"
+      "icons/icon-512x512.png"
     ],
     "windows": {
       "nsis": {
-        "installerIcon": "icons/icon.ico",
         "installMode": "currentUser",
         "displayLanguageSelector": false,
         "startMenuFolder": "pumpkin"
