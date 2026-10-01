@@ -1,9 +1,10 @@
 /**
  * pumpkin - Central Project & Open Source Configuration
- * All public links, versioning, licenses, and repository URLs are centralized here.
  */
 
-const RAW_REPO_URL = (import.meta as unknown as { env?: Record<string, string> }).env?.VITE_REPOSITORY_URL || 'https://github.com/nckfpsdev/pumpkin';
+const RAW_REPO_URL =
+  (import.meta as unknown as { env?: Record<string, string> }).env?.VITE_REPOSITORY_URL ||
+  'https://github.com/nckfpsdev/Pumpkin';
 
 export interface ProjectConfig {
   name: string;
@@ -37,13 +38,13 @@ const baseRepo = isConfigured ? RAW_REPO_URL.replace(/\/+$/, '') : undefined;
 
 export const project: ProjectConfig = {
   name: 'pumpkin',
-  currentVersion: '1.0.0',
-  releasedAt: '2026-09-29',
+  currentVersion: '1.0.2',
+  releasedAt: '2026-09-30',
   license: 'MIT',
   licenseName: 'Licença MIT Permissiva',
   githubProfileUrl: 'https://github.com/nckfpsdev',
   githubOwner: 'nckfpsdev',
-  repositoryName: 'pumpkin',
+  repositoryName: 'Pumpkin',
   repositoryUrl: baseRepo,
   releasesUrl: baseRepo ? `${baseRepo}/releases` : undefined,
   issuesUrl: baseRepo ? `${baseRepo}/issues` : undefined,
@@ -53,48 +54,39 @@ export const project: ProjectConfig = {
   changelogUrl: baseRepo ? `${baseRepo}/blob/main/CHANGELOG.md` : undefined,
   licenseUrl: baseRepo ? `${baseRepo}/blob/main/LICENSE` : undefined,
   isRepoConfigured: isConfigured,
-
-  // Real, verified open components existing in this codebase
   components: [
     {
       name: 'Frontend Web & UI',
       path: 'src/',
-      description: 'Interface em React 19, componentes visuais, Web Audio API (VAD) e roteador SPA.',
+      description: 'Interface React/TypeScript compartilhada entre Web e Tauri.',
       status: 'Open Source',
       license: 'MIT',
     },
     {
       name: 'Cliente Desktop Windows',
       path: 'src-tauri/',
-      description: 'Aplicação nativa empacotada com Tauri 2 em Rust, menu da bandeja do sistema e instalador NSIS.',
-      status: 'Open Source',
-      license: 'MIT',
-    },
-    {
-      name: 'Cliente Android Mobile',
-      path: 'src-tauri/gen/android/',
-      description: 'Módulo Android com suporte a MediaProjection e Foreground Service para áudio em segundo plano.',
+      description: 'Cliente Tauri 2 com empacotamento NSIS para Windows.',
       status: 'Open Source',
       license: 'MIT',
     },
     {
       name: 'Servidor Realtime & Sinalização',
       path: 'server.ts',
-      description: 'Servidor full-stack Node.js com Express e WebSocketServer para relay de mensagens e sinais WebRTC.',
+      description: 'Servidor Node.js com Express e WebSocket para chat, presença e sinalização WebRTC.',
       status: 'Open Source',
       license: 'MIT',
     },
     {
       name: 'Camada de Mídia & WebRTC',
       path: 'src/services/media/',
-      description: 'Implementação WebRTC Peer-to-Peer com padrão Polite Peer, controle de bitrate e codecs Opus/VP9.',
+      description: 'WebRTC peer-to-peer para voz e compartilhamento de tela.',
       status: 'Open Source',
       license: 'MIT',
     },
     {
-      name: 'Automação de CI/CD & Builds',
+      name: 'Automação de Release',
       path: '.github/workflows/release.yml',
-      description: 'Workflows do GitHub Actions para compilação automatizada de binários Windows (.exe) e Android (.apk).',
+      description: 'Build e publicação verificada do instalador Windows em GitHub Releases.',
       status: 'Open Source',
       license: 'MIT',
     },
