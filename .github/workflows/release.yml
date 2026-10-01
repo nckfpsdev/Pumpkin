@@ -121,11 +121,8 @@ jobs:
             throw "The built frontend does not contain the real Pumpkin nickname/app flow."
           }
 
-      - name: Install Tauri CLI
-        run: cargo install tauri-cli --version "^2.0.0" --locked
-
       - name: Build Tauri Windows x64 + NSIS
-        run: cargo tauri build --target x86_64-pc-windows-msvc --bundles nsis
+        run: bunx @tauri-apps/cli@2 build --target x86_64-pc-windows-msvc --bundles nsis
 
       - name: Validate native Pumpkin executable
         shell: pwsh
