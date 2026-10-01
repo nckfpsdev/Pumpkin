@@ -1,40 +1,22 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.2",
   "name": "pumpkin",
-  "releasedAt": "2026-09-29T14:00:00Z",
+  "distribution": "github-releases",
+  "repository": "https://github.com/nckfpsdev/Pumpkin",
+  "status": "awaiting-verified-release",
   "windows": {
-    "fileName": "pumpkin-Setup-1.0.0.exe",
-    "url": "/releases/pumpkin-Setup-1.0.0.exe",
-    "version": "1.0.0",
     "arch": "x64",
-    "sizeBytes": 65568,
-    "sizeFormatted": "65.5 KB",
-    "osRequirement": "Windows 10 / 11 (64-bit)",
-    "sha256": "60e5f076f9c098a0e357293f4fa3fd52f1c7588cc5ba926fed5c3f69b9d37edf"
+    "target": "x86_64-pc-windows-msvc",
+    "available": false,
+    "fileName": null,
+    "url": null,
+    "sizeBytes": null,
+    "sha256": null,
+    "signed": false
   },
   "android": {
-    "fileName": "pumpkin-1.0.0.apk",
-    "url": "/releases/pumpkin-1.0.0.apk",
-    "version": "1.0.0",
-    "minSdk": 24,
-    "targetSdk": 34,
-    "osRequirement": "Android 7.0 (Nougat) ou superior",
-    "sizeBytes": 65546,
-    "sizeFormatted": "65.5 KB",
-    "sha256": "560ab671dd8614cdc4913eaacbf0819abb17f4a92a15b2e2b2b6e7346fd71295"
+    "available": false,
+    "status": "disabled-until-validated"
   },
-  "playStore": {
-    "packageId": "com.pumpkin.app",
-    "aabFileName": "pumpkin-1.0.0.aab",
-    "status": "Ready for Google Play Console"
-  },
-  "releaseNotes": [
-    "Lançamento oficial pumpkin v1.0.0",
-    "Canais de voz de ultrabaixa latência com Opus",
-    "Compartilhamento de tela em tempo real até 1080p 60fps",
-    "Suporte nativo a Windows 64-bit com instalador NSIS",
-    "Suporte nativo a Android com MediaProjection e foreground service",
-    "Detecção ativa de voz (VAD) via Web Audio API",
-    "Conexão instantânea por apelido, sem senha e sem cadastro"
-  ]
+  "note": "The website resolves official download assets from GitHub Releases at runtime. No executable is served from public/releases."
 }

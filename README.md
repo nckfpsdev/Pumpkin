@@ -13,8 +13,8 @@ O **pumpkin** oferece uma experiência sem atrito para comunicação de equipes 
 - **Chat em tempo real:** Mensagens instantâneas via WebSockets persistidas na sessão do servidor com proteção contra spam.
 - **Ecossistema Multiplataforma:**
   - **Web:** Acesso direto pelo navegador (`/app`).
-  - **Windows Desktop:** Aplicativo desktop oficial com instalador NSIS (`pumpkin-Setup-1.0.0.exe`), System Tray e atalhos de teclado.
-  - **Android:** Aplicativo mobile oficial (`pumpkin-1.0.0.apk` e `pumpkin-1.0.0.aab`), com suporte a MediaProjection e Foreground Service para chamadas em segundo plano.
+  - **Windows Desktop:** Aplicativo desktop oficial com instalador NSIS (`pumpkin-Setup-1.0.2-windows-x64.exe`), System Tray e atalhos de teclado.
+  - **Android:** distribuição pública temporariamente desabilitada até o pipeline mobile gerar e validar pacotes reais.
   - **Site Oficial:** Landing page (`/`), Open Source (`/open-source`) e Central de Downloads (`/download`) com detecção automática de sistema operacional e verificação de hashes SHA-256.
 
 ---
@@ -70,10 +70,10 @@ O **pumpkin** oferece uma experiência sem atrito para comunicação de equipes 
 ### 4.1. Web & Backend (Desenvolvimento)
 ```bash
 # 1. Instalar dependências
-npm install
+bun install
 
 # 2. Iniciar servidor full-stack (Express + Vite + WebSocket)
-npm run dev
+bun run dev
 
 # 3. Acessar
 http://localhost:3000/         # Landing Page
@@ -85,12 +85,12 @@ http://localhost:3000/download # Central de Downloads
 Requisitos: Rust e Cargo instalados.
 ```bash
 # Iniciar modo de desenvolvimento Desktop:
-npm run desktop:dev
+bun run desktop:dev
 
 # Compilar instalador Windows (.exe NSIS):
-npm run desktop:build
+bun run desktop:build
 # O executável instalável é gerado em:
-# src-tauri/target/release/bundle/nsis/pumpkin-Setup-1.0.0.exe
+# src-tauri/target/release/bundle/nsis/pumpkin-Setup-1.0.2-windows-x64.exe
 ```
 
 ### 4.3. Android (Desenvolvimento & Build)
@@ -142,7 +142,7 @@ O manifesto oficial de downloads é mantido em `public/releases/latest.json` e s
 Os checksums SHA-256 estão disponíveis em `public/releases/checksums.txt`:
 
 ```text
-60e5f076f9c098a0e357293f4fa3fd52f1c7588cc5ba926fed5c3f69b9d37edf  pumpkin-Setup-1.0.0.exe
+60e5f076f9c098a0e357293f4fa3fd52f1c7588cc5ba926fed5c3f69b9d37edf  pumpkin-Setup-1.0.2-windows-x64.exe
 560ab671dd8614cdc4913eaacbf0819abb17f4a92a15b2e2b2b6e7346fd71295  pumpkin-1.0.0.apk
 ```
 

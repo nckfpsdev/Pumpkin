@@ -1,7 +1,7 @@
 {
   "name": "pumpkin",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -9,10 +9,10 @@
     "build": "vite build",
     "start": "node server.ts",
     "preview": "vite preview",
-    "clean": "rm -rf dist",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
     "lint": "tsc --noEmit",
     "desktop:dev": "cargo tauri dev",
-    "desktop:build": "cargo tauri build --bundles nsis",
+    "desktop:build": "cargo tauri build --target x86_64-pc-windows-msvc --bundles nsis",
     "android:init": "cargo tauri android init",
     "android:dev": "cargo tauri android dev",
     "android:build:apk": "cargo tauri android build --apk",

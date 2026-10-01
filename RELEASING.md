@@ -8,9 +8,9 @@ Este documento descreve o procedimento de lançamento de novas versões do **pum
 
 O pumpkin segue [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`).
 A versão oficial é centralizada em:
-- `package.json` (`"version": "1.0.0"`)
-- `src-tauri/tauri.conf.json` (`"version": "1.0.0"`)
-- `src-tauri/Cargo.toml` (`version = "1.0.0"`)
+- `package.json` (`"version": "1.0.2"`)
+- `src-tauri/tauri.conf.json` (`"version": "1.0.2"`)
+- `src-tauri/Cargo.toml` (`version = "1.0.2"`)
 - `public/releases/latest.json`
 
 ---
@@ -30,9 +30,9 @@ npm run build
 Localmente em ambiente Windows ou via GitHub Actions runner `windows-latest`:
 ```bash
 # Gera o instalador profissional com NSIS:
-cargo tauri build --bundles nsis
+cargo tauri build --target x86_64-pc-windows-msvc --bundles nsis
 # Saída gerada em:
-# src-tauri/target/release/bundle/nsis/pumpkin-Setup-1.0.0.exe
+# src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/pumpkin-Setup-1.0.2.exe
 ```
 
 ### Passo 3: Geração do Android (.apk e .aab)
@@ -54,27 +54,27 @@ cargo tauri android build --aab
 #### Windows:
 Assine o instalador com certificado EV ou Standard via `signtool`:
 ```powershell
-signtool sign /tr http://timestamp.digicert.com /td sha256 /fd sha256 /a "src-tauri/target/release/bundle/nsis/pumpkin-Setup-1.0.0.exe"
+signtool sign /tr http://timestamp.digicert.com /td sha256 /fd sha256 /a "src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/pumpkin-Setup-1.0.2.exe"
 ```
 
 #### Android:
 Assine o APK e AAB com `apksigner` e a keystore oficial:
 ```bash
-apksigner sign --ks release.keystore --ks-key-alias pumpkin --out pumpkin-1.0.0.apk app-release-unsigned.apk
+apksigner sign --ks release.keystore --ks-key-alias pumpkin --out pumpkin-1.0.2.apk app-release-unsigned.apk
 ```
 *Atenção: NUNCA faça commit da keystore nem de senhas no repositório. Utilize variáveis de ambiente `KEYSTORE_PATH`, `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD` nos secrets do GitHub.*
 
 ### Passo 5: Geração de Checksums SHA-256
 ```bash
-sha256sum pumpkin-Setup-1.0.0.exe pumpkin-1.0.0.apk > checksums.txt
+sha256sum pumpkin-Setup-1.0.2.exe pumpkin-1.0.2.apk > checksums.txt
 ```
 
-### Passo 6: Atualização do Manifesto
-Atualize `public/releases/latest.json` com os novos hashes e notas da versão.
+### Passo 6: Publicação verificada
+O workflow publica o instalador diretamente em GitHub Releases e faz um download de ida e volta para comparar o SHA-256. Não publique binários em `public/releases/`.
 
 ### Passo 7: Disparo Automático via Git Tag
 O workflow do GitHub Actions `.github/workflows/release.yml` compila e anexa automaticamente todos os binários à release:
 ```bash
-git tag v1.0.0
-git push origin v1.0.0
+git tag v1.0.2
+git push origin v1.0.2
 ```

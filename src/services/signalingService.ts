@@ -18,6 +18,15 @@ class SignalingService {
   public connect(authData: { userId: string; displayName: string; avatarColor: string }) {
     this.pendingAuth = authData;
     this.isIntentionallyClosed = false;
+
+    if (!WS_URL) {
+      console.error(
+        '[Signaling] VITE_WS_URL is not configured. Native production releases must be built with a public WSS endpoint.'
+      );
+      this.setStatus('disconnected');
+      return;
+    }
+
     this.initSocket();
   }
 
@@ -31,22 +40,24 @@ class SignalingService {
   }
 
   private initSocket() {
+    if (!WS_URL) {
+      this.setStatus('disconnected');
+      return;
+    }
+
     if (this.ws && (this.ws.readyState === WebSocket.OPEN || this.ws.readyState === WebSocket.CONNECTING)) {
       return;
     }
 
     this.setStatus(this.reconnectAttempts > 0 ? 'reconnecting' : 'connecting');
 
-    const wsUrl = WS_URL;
-
     try {
-      this.ws = new WebSocket(wsUrl);
+      this.ws = new WebSocket(WS_URL);
 
       this.ws.onopen = () => {
         this.reconnectAttempts = 0;
         this.setStatus('connected');
 
-        // Immediately authenticate with stored or pending credentials
         if (this.pendingAuth) {
           this.send({
             type: 'auth',
@@ -54,7 +65,6 @@ class SignalingService {
           });
         }
 
-        // Start ping interval
         if (this.pingInterval) clearInterval(this.pingInterval);
         this.pingInterval = setInterval(() => {
           this.send({ type: 'ping' });
@@ -92,6 +102,11 @@ class SignalingService {
   }
 
   private scheduleReconnect() {
+    if (!WS_URL || this.isIntentionallyClosed) {
+      this.setStatus('disconnected');
+      return;
+    }
+
     if (this.reconnectTimer) clearTimeout(this.reconnectTimer);
     const delay = Math.min(1000 * Math.pow(1.5, this.reconnectAttempts), 8000);
     this.reconnectAttempts++;

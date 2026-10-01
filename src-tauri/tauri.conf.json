@@ -1,17 +1,19 @@
 {
   "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli/schema.json",
   "productName": "pumpkin",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "identifier": "com.pumpkin.app",
   "build": {
-    "beforeDevCommand": "",
+    "beforeDevCommand": "bun run dev",
     "devUrl": "http://localhost:3000",
-    "beforeBuildCommand": "npm run build",
+    "beforeBuildCommand": "bun run build",
     "frontendDist": "../dist"
   },
   "app": {
+    "withGlobalTauri": true,
     "windows": [
       {
+        "label": "main",
         "title": "pumpkin",
         "width": 1280,
         "height": 800,
@@ -35,7 +37,7 @@
   },
   "bundle": {
     "active": true,
-    "targets": ["nsis", "apk", "aab"],
+    "targets": ["nsis"],
     "icon": [
       "icons/icon-32x32.png",
       "icons/icon-128x128.png",
@@ -43,17 +45,11 @@
     ],
     "windows": {
       "nsis": {
-        "installerIcon": "icons/icon-32x32.png",
         "installMode": "currentUser",
         "displayLanguageSelector": false,
         "startMenuFolder": "pumpkin"
       },
       "wix": null
-    },
-    "android": {
-      "minSdkVersion": 24,
-      "targetSdkVersion": 34,
-      "versionCode": 100
     }
   }
 }

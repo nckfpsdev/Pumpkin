@@ -5,6 +5,24 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 ---
 
+## [1.0.2] — 2026-09-30
+
+### Fixed
+- Removidos os arquivos EXE/APK placeholder que não eram builds distribuíveis reais.
+- Corrigido o pipeline Windows para gerar Tauri + NSIS em `x86_64-pc-windows-msvc`.
+- Adicionada validação de `MZ`, `PE\\0\\0`, arquitetura e SHA-256.
+- A página de downloads agora usa somente assets reais de GitHub Releases.
+- O release faz download de ida e volta do asset publicado e compara o SHA-256.
+- Removido o fallback nativo para endpoint `ais-dev` do Google AI Studio.
+- Releases nativas agora exigem backend público HTTPS/WSS configurado.
+- Distribuição Android temporariamente desabilitada até haver build mobile real validado.
+
+### Security
+- O servidor deixou de aceitar qualquer origem `.run.app`; apenas origens explicitamente permitidas são aceitas.
+- Downloads passam a falhar de forma segura quando não existe um asset oficial.
+
+---
+
 ## [1.0.0] — 2026-09-29
 
 ### Added

@@ -9,7 +9,7 @@ Este documento descreve detalhadamente como reproduzir e compilar o código-font
 | Componente | Versão Mínima Recomendada | Finalidade |
 | :--- | :--- | :--- |
 | **Node.js** | `>= 22.0.0` (LTS) | Runtime do frontend e servidor |
-| **Package Manager** | `npm` `>= 10.0.0` | Instalação e gestão de dependências |
+| **Package Manager** | `Bun` | Instalação e gestão de dependências |
 | **Rust & Cargo** | `1.75.0` (stable) | Compilação do cliente nativo desktop (Tauri 2) |
 | **Tauri CLI** | `^2.0.0` | Empacotamento de binários nativos |
 | **Java JDK** | `17` (Eclipse Temurin / OpenJDK) | Compilação do módulo Android |
@@ -27,8 +27,8 @@ cp .env.example .env
 
 Variáveis suportadas:
 - `PORT` (opcional): Porta local do servidor (padrão: `3000`).
-- `VITE_API_BASE_URL` (opcional): URL de produção da API REST para clientes nativos (em navegadores, padrão é `window.location.origin`).
-- `VITE_WS_URL` (opcional): Endpoint do WebSocket (padrão em navegadores: `wss://<host>/ws`).
+- `VITE_API_BASE_URL` (obrigatório em release nativo): URL de produção da API REST para clientes nativos (em navegadores, padrão é `window.location.origin`).
+- `VITE_WS_URL` (obrigatório em release nativo): Endpoint do WebSocket (padrão em navegadores: `wss://<host>/ws`).
 - `TURN_URL`, `TURN_USERNAME`, `TURN_CREDENTIAL` (opcional): Servidor TURN para atravessar firewalls corporativos restritivos.
 
 *Nota de Segurança: NUNCA insira keystores, chaves privadas ou certificados de assinatura no repositório de código.*
@@ -39,17 +39,17 @@ Variáveis suportadas:
 
 ```bash
 # 1. Instalar dependências exatas
-npm ci
+bun install --frozen-lockfile
 
 # 2. Validar tipagem TypeScript
-npm run lint
+bun run lint
 
 # 3. Gerar build de produção do frontend Vite
-npm run build
+bun run build
 # Os arquivos estáticos otimizados são gerados no diretório dist/
 
 # 4. Executar em modo desenvolvimento
-npm run dev
+bun run dev
 ```
 
 ---
@@ -63,12 +63,12 @@ Requer ambiente Windows (ou cross-compilação configurada) com Rust e NSIS inst
 cargo install tauri-cli --version "^2.0.0"
 
 # 2. Executar em modo de desenvolvimento desktop
-npm run desktop:dev
+bun run desktop:dev
 
 # 3. Gerar instalador oficial Windows (NSIS 64-bit)
-npm run desktop:build
+bun run desktop:build
 # O instalador oficial é gerado em:
-# src-tauri/target/release/bundle/nsis/pumpkin-Setup-1.0.0.exe
+# src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/*.exe
 ```
 
 ---
