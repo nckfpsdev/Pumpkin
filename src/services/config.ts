@@ -1,12 +1,17 @@
 /**
  * pumpkin - Central Endpoint & Network Configuration
  *
- * Web builds use same-origin by default.
+ * Browser builds use same-origin by default.
  * Native production builds MUST receive VITE_API_BASE_URL and VITE_WS_URL
- * at build time. We intentionally do not fall back to AI Studio/Cloud Run
- * development URLs because those can require session cookies and break
- * installed clients.
+ * at build time. We intentionally never fall back to AI Studio preview URLs.
  */
+
+const isTauriRuntime = (): boolean =>
+  typeof window !== 'undefined' &&
+  Boolean(
+    (window as unknown as { __TAURI__?: unknown }).__TAURI__ ||
+    (window as unknown as { __TAURI_INTERNALS__?: unknown }).__TAURI_INTERNALS__
+  );
 
 const isHttpOrigin = (): boolean =>
   typeof window !== 'undefined' &&
@@ -18,15 +23,15 @@ const getApiBaseUrl = (): string => {
     return import.meta.env.VITE_API_BASE_URL.replace(/\/+$/, '');
   }
 
+  if (isTauriRuntime()) {
+    return import.meta.env.DEV ? 'http://localhost:3000' : '';
+  }
+
   if (isHttpOrigin()) {
     return window.location.origin;
   }
 
-  if (import.meta.env.DEV) {
-    return 'http://localhost:3000';
-  }
-
-  return '';
+  return import.meta.env.DEV ? 'http://localhost:3000' : '';
 };
 
 const getWsUrl = (): string => {
@@ -34,16 +39,16 @@ const getWsUrl = (): string => {
     return import.meta.env.VITE_WS_URL;
   }
 
+  if (isTauriRuntime()) {
+    return import.meta.env.DEV ? 'ws://localhost:3000/ws' : '';
+  }
+
   if (isHttpOrigin()) {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     return `${protocol}//${window.location.host}/ws`;
   }
 
-  if (import.meta.env.DEV) {
-    return 'ws://localhost:3000/ws';
-  }
-
-  return '';
+  return import.meta.env.DEV ? 'ws://localhost:3000/ws' : '';
 };
 
 export const API_BASE_URL = getApiBaseUrl();
